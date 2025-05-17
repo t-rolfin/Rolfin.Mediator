@@ -12,6 +12,9 @@
 		<Description>Mediator Pattern implementation in .NET</Description>
 		<RepositoryUrl>https://github.com/t-rolfin/Rolfin.Mediator</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/t-rolfin/Rolfin.Mediator</PackageProjectUrl>
+		
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
