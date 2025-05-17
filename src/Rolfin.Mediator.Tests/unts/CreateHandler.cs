@@ -1,12 +1,10 @@
-﻿
-namespace Rolfin.Mediator.Tests.unts;
+﻿namespace Rolfin.Mediator.Tests.unts;
 
 
 public record RequestWithParams(int param) : ICommand;
 
 
 public record RequestWithParamsAndResponse(int param1, int param2) : ICommand<object[]>;
-
 
 internal class CreateHandler : ICommandHandler<RequestWithParams>
 {

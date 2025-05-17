@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Rolfin.Mediator.ExternalLibrary\Rolfin.Mediator.ExternalLibrary.csproj" />
     <ProjectReference Include="..\Rolfin.Mediator\Rolfin.Mediator.csproj" />
   </ItemGroup>
 
