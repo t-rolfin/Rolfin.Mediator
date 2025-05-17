@@ -5,7 +5,13 @@
 	<LangVersion>12.0</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-	
+	<Version>0.1.0</Version>
+	<Authors>Florin Tatu</Authors>
+	<Company>RT Net</Company>
+	<PackageTags>Mediator</PackageTags>
+	<Description>Mediator Pattern implementation in .NET</Description>
+	<PackageProjectUrl>https://github.com/t-rolfin/Rolfin.Mediator</PackageProjectUrl>
+	<RepositoryUrl>https://github.com/t-rolfin/Rolfin.Mediator</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
