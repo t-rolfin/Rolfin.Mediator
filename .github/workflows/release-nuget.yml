@@ -2,11 +2,14 @@ name: Rolfin.Mediator - Release
 
 on:
   pull_request:
+    types: [ closed ]
     branches: [ "release" ]
 
 jobs:
-  build:
+  on_merge:
+    name: Perform actions on merge
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
 
     steps:
     - uses: actions/checkout@v4
