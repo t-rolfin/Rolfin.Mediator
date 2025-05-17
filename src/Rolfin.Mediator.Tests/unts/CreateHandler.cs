@@ -11,25 +11,19 @@ public record RequestWithParamsAndResponse(int param1, int param2) : ICommand<ob
 internal class CreateHandler : ICommandHandler<RequestWithParams>
 {
     public ValueTask HandleAsync(RequestWithParams command, CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
-    }
+        => ValueTask.CompletedTask;
 }
 
 
 internal class CreateWithResponseHandler : ICommandHandler<RequestWithParamsAndResponse, object[]>
 {
     public ValueTask<object[]> HandleAsync(RequestWithParamsAndResponse command, CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
-    }
+        => ValueTask.FromResult<object[]>([]);
 }
 
 
 internal class CreateWithResponseSecHandler : ICommandHandler<RequestWithParamsAndResponse, object[]>
 {
     public ValueTask<object[]> HandleAsync(RequestWithParamsAndResponse command, CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
-    }
+        => ValueTask.FromResult<object[]>([]);
 }
