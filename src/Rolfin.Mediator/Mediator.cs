@@ -1,4 +1,6 @@
-﻿namespace Rolfin.Mediator;
+﻿using Rolfin.Mediator.Exceptions;
+
+namespace Rolfin.Mediator;
 
 
 public class Mediator : IMediator
@@ -12,14 +14,18 @@ public class Mediator : IMediator
 
     public async ValueTask<TResponse> Send<TResponse>(ICommand<TResponse> command, CancellationToken cancellationToken = default)
     {
+        string commandName = command.GetType().Name;
+
         var handlerType = typeof(ICommandHandler<,>).MakeGenericType(command.GetType(), typeof(TResponse));
-        var handler = _serviceProvider.GetService(handlerType);
+        var handlers = _serviceProvider.GetServices(handlerType);
 
-        if (handler is null) throw new InvalidOperationException($"No handler was registered for command type {command.GetType().Name}");
+        if (handlers.Count() > 1) throw new MultipleHandlersFoundException($"Where found more then one registered handler of type \"{commandName}\"");
+        if (handlers is null || handlers.Any() is false) throw new NotHandlerFoundException($"Couldn't be found any handlers for \"{commandName}\"");  
 
+        var handler = handlers.First();
         var methodInfo = handler.GetType().GetMethod(nameof(ICommandHandler<ICommand<TResponse>, TResponse>.HandleAsync));
         if (methodInfo is null) throw new InvalidOperationException(
-                $"Handler for {command.GetType().Name} does not have the expected " +
+                $"Handler for {commandName} does not have the expected " +
                 $"{nameof(ICommandHandler<ICommand<TResponse>, TResponse>.HandleAsync)} method signiture."
             );
 
@@ -28,11 +34,15 @@ public class Mediator : IMediator
     }
     public async ValueTask<TResponse> Send<TResponse>(IQuery<TResponse> query, CancellationToken cancellationToken = default)
     {
+        string queryName = query.GetType().Name;
+
         var handlerType = typeof(IQueryHandler<,>).MakeGenericType(query.GetType(), typeof(TResponse));
-        var handler = _serviceProvider.GetService(handlerType);
+        var handlers = _serviceProvider.GetServices(handlerType);
 
-        if (handler is null) throw new InvalidOperationException($"No handler was registered for query type {query.GetType().Name}");
+        if (handlers.Count() > 1) throw new MultipleHandlersFoundException($"Where found more then one registered handler of type \"{queryName}\"");
+        if (handlers is null || handlers.Any() is false) throw new NotHandlerFoundException($"Couldn't be found any handlers for \"{queryName}\"");
 
+        var handler = handlers.First();
         var methodInfo = handler.GetType().GetMethod(nameof(IQueryHandler<IQuery<TResponse>, TResponse>.QueryAsync));
         if (methodInfo is null) throw new InvalidOperationException(
                 $"Handler for {query.GetType().Name} does not have the expected " +
@@ -44,11 +54,15 @@ public class Mediator : IMediator
     }
     public async ValueTask Send(ICommand command, CancellationToken cancellationToken = default)
     {
+        string commandName = command.GetType().Name;
+
         var handlerType = typeof(ICommandHandler<>).MakeGenericType(command.GetType());
-        var handler = _serviceProvider.GetService(handlerType);
+        var handlers = _serviceProvider.GetServices(handlerType);
 
-        if (handler is null) throw new InvalidOperationException($"No handler was registered for command type {command.GetType().Name}");
+        if (handlers.Count() > 1) throw new MultipleHandlersFoundException($"Where found more then one registered handler of type \"{commandName}\"");
+        if (handlers is null || handlers.Any() is false) throw new NotHandlerFoundException($"Couldn't be found any handlers for \"{commandName}\"");
 
+        var handler = handlers.First();
         var methodInfo = handler.GetType().GetMethod(nameof(ICommandHandler<ICommand>.HandleAsync));
         if (methodInfo is null) throw new InvalidOperationException(
                 $"Handler for {command.GetType().Name} does not have the expected " +
