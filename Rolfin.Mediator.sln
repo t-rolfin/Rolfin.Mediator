@@ -5,6 +5,10 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rolfin.Mediator", "src\Rolfin.Mediator\Rolfin.Mediator.csproj", "{0A88BDBF-19E1-4E81-BBF7-25ADC0BEDD56}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rolfin.Mediator.Tests", "src\Rolfin.Mediator.Tests\Rolfin.Mediator.Tests.csproj", "{BE41E2C9-0C36-443C-90B0-45C173C17862}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +19,16 @@ Global
 		{0A88BDBF-19E1-4E81-BBF7-25ADC0BEDD56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A88BDBF-19E1-4E81-BBF7-25ADC0BEDD56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A88BDBF-19E1-4E81-BBF7-25ADC0BEDD56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE41E2C9-0C36-443C-90B0-45C173C17862}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE41E2C9-0C36-443C-90B0-45C173C17862}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE41E2C9-0C36-443C-90B0-45C173C17862}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE41E2C9-0C36-443C-90B0-45C173C17862}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BE41E2C9-0C36-443C-90B0-45C173C17862} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2778546A-3B67-4D45-B0BD-9DB2D419ADDF}
