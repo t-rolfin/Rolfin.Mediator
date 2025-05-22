@@ -13,7 +13,7 @@ public class Mediator : IMediator
         => _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
 
 
-    public async ValueTask PublishAsync(IEvent @event, CancellationToken cancellationToken = default)
+    public async Task PublishAsync(IEvent @event, CancellationToken cancellationToken = default)
     {
         string commandName = @event.GetType().Name;
 
@@ -33,11 +33,11 @@ public class Mediator : IMediator
                     $"{nameof(IEventHandler<IEvent>.HandleAsync)} method signiture."
                 );
 
-            var task = (ValueTask)methodInfo.Invoke(handler, [ @event, cancellationToken ])!;
+            var task = (Task)methodInfo.Invoke(handler, [ @event, cancellationToken ])!;
             await task.ConfigureAwait(false);
         }
     }
-    public async ValueTask SendAsync(ICommand command, CancellationToken cancellationToken = default)
+    public async Task SendAsync(ICommand command, CancellationToken cancellationToken = default)
     {
         string commandName = command.GetType().Name;
 
@@ -54,10 +54,10 @@ public class Mediator : IMediator
                 $"{nameof(ICommandHandler<ICommand>.HandleAsync)} method signiture."
             );
 
-        var task = (ValueTask)methodInfo.Invoke(handler, [ command, cancellationToken ])!;
+        var task = (Task)methodInfo.Invoke(handler, [ command, cancellationToken ])!;
         await task.ConfigureAwait(false);
     }
-    public async ValueTask<TResponse> SendAsync<TResponse>(IQuery<TResponse> query, CancellationToken cancellationToken = default)
+    public async Task<TResponse> SendAsync<TResponse>(IQuery<TResponse> query, CancellationToken cancellationToken = default)
     {
         string queryName = query.GetType().Name;
 
@@ -77,7 +77,7 @@ public class Mediator : IMediator
         var task = (Task<TResponse>?)methodInfo.Invoke(handler, [query, cancellationToken]);
         return await task.ConfigureAwait(false);
     }
-    public async ValueTask<TResponse> SendAsync<TResponse>(ICommand<TResponse> command, CancellationToken cancellationToken = default)
+    public async Task<TResponse> SendAsync<TResponse>(ICommand<TResponse> command, CancellationToken cancellationToken = default)
     {
         string commandName = command.GetType().Name;
 

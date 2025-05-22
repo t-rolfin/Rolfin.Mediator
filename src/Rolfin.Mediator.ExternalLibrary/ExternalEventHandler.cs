@@ -3,17 +3,17 @@
 
 internal class ExternalEventHandler : IEventHandler<ExternalEvent>
 {
-    public ValueTask HandleAsync(IEvent @event, CancellationToken cancellationToken = default)
+    public Task HandleAsync(IEvent @event, CancellationToken cancellationToken = default)
     {
-        return ValueTask.CompletedTask;
+        return Task.CompletedTask;
     }
 }
 
 
 internal class AnotherExternalEventHandler : IEventHandler<ExternalEvent>
 {
-    public ValueTask HandleAsync(IEvent @event, CancellationToken cancellationToken = default)
+    public Task HandleAsync(IEvent @event, CancellationToken cancellationToken = default)
     {
-        return ValueTask.CompletedTask;
+        return Task.CompletedTask;
     }
 }

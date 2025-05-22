@@ -8,20 +8,20 @@ public record RequestWithParamsAndResponse(int param1, int param2) : ICommand<ob
 
 internal class CreateHandler : ICommandHandler<RequestWithParams>
 {
-    public ValueTask HandleAsync(RequestWithParams command, CancellationToken cancellationToken)
-        => ValueTask.CompletedTask;
+    public Task HandleAsync(RequestWithParams command, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 }
 
 
 internal class CreateWithResponseHandler : ICommandHandler<RequestWithParamsAndResponse, object[]>
 {
-    public ValueTask<object[]> HandleAsync(RequestWithParamsAndResponse command, CancellationToken cancellationToken)
-        => ValueTask.FromResult<object[]>([]);
+    public Task<object[]> HandleAsync(RequestWithParamsAndResponse command, CancellationToken cancellationToken)
+        => Task.FromResult<object[]>([]);
 }
 
 
 internal class CreateWithResponseSecHandler : ICommandHandler<RequestWithParamsAndResponse, object[]>
 {
-    public ValueTask<object[]> HandleAsync(RequestWithParamsAndResponse command, CancellationToken cancellationToken)
-        => ValueTask.FromResult<object[]>([]);
+    public Task<object[]> HandleAsync(RequestWithParamsAndResponse command, CancellationToken cancellationToken)
+        => Task.FromResult<object[]>([]);
 }
