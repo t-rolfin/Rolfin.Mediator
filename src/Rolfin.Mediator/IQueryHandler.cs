@@ -7,5 +7,5 @@
 /// <typeparam name="TResponse">The type of query being handled</typeparam>
 public interface IQueryHandler<in TQuery, TResponse> where TQuery : IQuery<TResponse>
 {
-    public ValueTask<TResponse> QueryAsync(TQuery request, CancellationToken cancellationToken);
+    public Task<TResponse> QueryAsync(TQuery request, CancellationToken cancellationToken);
 }

@@ -7,5 +7,5 @@
 /// <typeparam name="TNotification">The type of command being handled</typeparam>
 public interface IEventHandler<in TEvent>  where TEvent : IEvent 
 {
-    ValueTask HandleAsync(IEvent @event, CancellationToken cancellationToken = default);
+    Task HandleAsync(IEvent @event, CancellationToken cancellationToken = default);
 }
