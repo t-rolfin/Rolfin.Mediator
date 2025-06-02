@@ -35,6 +35,5 @@ public static class ServicesExtensions
                 .AsImplementedInterfaces()
             .AddClasses(classes => classes.AssignableTo(typeof(IEventHandler<>)), publicOnly: false)
                 .AsImplementedInterfaces()
-                .WithScopedLifetime()
         );
 }
