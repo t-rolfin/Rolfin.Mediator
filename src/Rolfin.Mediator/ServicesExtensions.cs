@@ -6,11 +6,9 @@ namespace Rolfin.Mediator;
 
 public static class ServicesExtensions
 {
-    static MediatorServiceConfiguration _configs = new();
-
-
     public static IServiceCollection AddMediator(this IServiceCollection services, Action<MediatorServiceConfiguration> configration)
     {
+        var _configs = new MediatorServiceConfiguration();
         configration.Invoke(_configs);
 
         _ = _configs.Lifetime switch
