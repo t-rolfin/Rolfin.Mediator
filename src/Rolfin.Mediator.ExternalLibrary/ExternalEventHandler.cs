@@ -3,7 +3,7 @@
 
 internal class ExternalEventHandler : IEventHandler<ExternalEvent>
 {
-    public Task HandleAsync(IEvent @event, CancellationToken cancellationToken = default)
+    public Task HandleAsync(ExternalEvent @event, CancellationToken cancellationToken = default)
     {
         return Task.CompletedTask;
     }
@@ -12,7 +12,7 @@ internal class ExternalEventHandler : IEventHandler<ExternalEvent>
 
 internal class AnotherExternalEventHandler : IEventHandler<ExternalEvent>
 {
-    public Task HandleAsync(IEvent @event, CancellationToken cancellationToken = default)
+    public Task HandleAsync(ExternalEvent @event, CancellationToken cancellationToken = default)
     {
         return Task.CompletedTask;
     }
